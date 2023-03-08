@@ -24,7 +24,7 @@ class DSBM:
 
     def get_clustered_nodes(self):
         dps = np.reshape(
-            np.array([["N" + str(i*self.pcNodes + j) for j in range(self.pcNodes)] for i in range(self.clusterNum)]),
+            np.array([["N" + str(i * self.pcNodes + j) for j in range(self.pcNodes)] for i in range(self.clusterNum)]),
             (self.clusterNum, self.pcNodes))  # k clusters, each with n nodes
         assert (dps.shape == (self.clusterNum, self.pcNodes))
         return dps
@@ -39,10 +39,13 @@ class DSBM:
             for j in range(i, N):
                 # Inter-cluster
                 if j < self.pcNodes * s:
-                    p = self.interClusterEdgeProb  # * 0.5
+                    p = self.interClusterEdgeProb
                     isEdge = np.random.choice([1, 0], p=[p, 1. - p])
-                    edges[i, j] = isEdge *np.random.choice([1, 0], p=[0.5, 0.5])
-                    edges[j, i] = isEdge * (1 - edges[i, j])
+                    if i == j:
+                        edges[i, j] = isEdge
+                    else:
+                        edges[i, j] = isEdge * np.random.choice([1, 0], p=[0.5, 0.5])
+                        edges[j, i] = isEdge * (1 - edges[i, j])
                 # Intra-cluster
                 else:
                     p = self.intraClusterEdgeProb

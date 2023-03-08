@@ -2,7 +2,7 @@ from utils.math_functions import pd
 from utils.plotting_functions import plt, visualise_digraph
 
 dataSetName = "OPCL_20000103_20201231"
-methods = ["pearson", "kendall"]
+methods = ["spearman", "kendall", 'distance']
 for method in methods:
     csvPath = "../data/adjMat_"+dataSetName+"_" + method + ".gzip"
     df = pd.read_csv(csvPath, compression="gzip")

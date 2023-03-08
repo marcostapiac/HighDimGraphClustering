@@ -25,5 +25,5 @@ def visualise_digraph(cdNodes, adjMat, plottitle):
     interEdges = G.edges # TODO: Identify inter cluster edges
     nx.draw_networkx_edges(G, pos, edgelist=interEdges, edge_color="blue", arrows=True)  # TODO: Dynamic arrow sizes (with respect to nodes)
     #""" Intra-cluster """
-    #intraEdges = G.edges # TODO: Identify intra-cluster edges
-    #nx.draw_networkx_edges(G, pos, edgelist=intraEdges, edge_color="orange", arrows=True)  # TODO: Dynamic arrow sizes (with respect to nodes)
+    intraEdges = G.edges # TODO: Identify intra-cluster edges
+    nx.draw_networkx_edges(G, pos, edgelist=intraEdges, edge_color="orange", arrows=True)  # TODO: Dynamic arrow sizes (with respect to nodes)
